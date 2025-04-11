@@ -187,7 +187,6 @@ public class CharacterBuilder {
 
     Character buildHalfElfCharacter(Character rawCharacter) {
         // TODO add +1 to two other scores!
-        // TODO add language
         return Character.builder()
                 .strength(rawCharacter.getStrength())
                 .intelligence(Math.min(rawCharacter.getIntelligence() + 1, Constants.HALF_ELF_MAX))
