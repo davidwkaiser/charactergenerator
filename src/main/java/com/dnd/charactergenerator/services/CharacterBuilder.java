@@ -4,6 +4,9 @@ import org.springframework.stereotype.Service;
 
 import com.dnd.charactergenerator.utils.Constants;
 import com.dnd.charactergenerator.utils.RandomNumberGenerator;
+
+import com.dnd.charactergenerator.models.Language;
+
 import com.dnd.charactergenerator.models.Character;
 import com.dnd.charactergenerator.models.Race;
 import com.dnd.charactergenerator.models.Alignment;
@@ -96,14 +99,14 @@ public class CharacterBuilder {
         return race;
     }
 
-    private List<String> getLanguage(List<String> alreadyHas){
+    private List<Language> getLanguage(List<Language> alreadyHas){
 
-        List<String> possibleLanguages = Constants.LANGUAGES
+        List<Language> possibleLanguages = List.of(Language.values())
             .stream()
             .filter(l -> !alreadyHas.contains(l))
             .toList();
 
-        List<String> languageList = new ArrayList<>(alreadyHas); 
+        List<Language> languageList = new ArrayList<>(alreadyHas); 
         int index = randomNumberGenerator.getIndex(possibleLanguages.size());
         languageList.add(possibleLanguages.get(index)); 
 
@@ -184,6 +187,7 @@ public class CharacterBuilder {
 
     Character buildHalfElfCharacter(Character rawCharacter) {
         // TODO add +1 to two other scores!
+        // TODO add language
         return Character.builder()
                 .strength(rawCharacter.getStrength())
                 .intelligence(Math.min(rawCharacter.getIntelligence() + 1, Constants.HALF_ELF_MAX))
@@ -193,7 +197,7 @@ public class CharacterBuilder {
                 .charisma(Math.min(rawCharacter.getCharisma() + 2, Constants.HALF_ELF_MAX))
                 .race(rawCharacter.getRace())
                 .traits(List.of("Darkvision", "Fey Ancestry", "CHOOSE ONE SKILL", "CHOOSE ONE SKILL"))
-                .languages(List.of("Common", "Elvish", "CHOOSE ONE LANGUAGE"))
+                .languages(getLanguage(Constants.HALF_ELF_LANGUAGES))
                 .alignment(rawCharacter.getAlignment())
                 .build();
     }

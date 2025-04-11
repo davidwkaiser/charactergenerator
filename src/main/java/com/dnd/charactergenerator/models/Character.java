@@ -1,6 +1,7 @@
 package com.dnd.charactergenerator.models;
 
 import lombok.Data;
+import com.dnd.charactergenerator.models.Language;
 import lombok.Builder;
 import java.util.*;
 
@@ -17,6 +18,6 @@ public class Character {
     int charisma;
     Race race;
     List<String> traits;
-    List<String> languages;
+    List<Language> languages;
     Alignment alignment;
 }
