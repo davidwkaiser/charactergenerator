@@ -4,9 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.dnd.charactergenerator.utils.Constants;
 import com.dnd.charactergenerator.utils.RandomNumberGenerator;
-
 import com.dnd.charactergenerator.models.Language;
-
 import com.dnd.charactergenerator.models.Character;
 import com.dnd.charactergenerator.models.Race;
 import com.dnd.charactergenerator.models.Alignment;
