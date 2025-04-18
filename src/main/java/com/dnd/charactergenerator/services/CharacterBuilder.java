@@ -112,7 +112,6 @@ public class CharacterBuilder {
     }
 
     Character modifyCharacter(Character rawCharacter) {
-        // TODO add traits and possibly languages to the below
         Race race = rawCharacter.getRace(); 
         Function<Character, Character> method = builderMap.get(race); 
         return method.apply(rawCharacter); 
@@ -184,16 +183,20 @@ public class CharacterBuilder {
     }
 
     Character buildHalfElfCharacter(Character rawCharacter) {
-        // TODO add +1 to two other scores!
+
+        List<Integer> halfElfBonus = Arrays.asList(1,1,0,0,0,0); 
+        int seed = randomNumberGenerator.rollDie(1000);
+        Collections.shuffle(halfElfBonus, new Random(seed));
+
         return Character.builder()
-                .strength(rawCharacter.getStrength())
-                .intelligence(Math.min(rawCharacter.getIntelligence() + 1, Constants.HALF_ELF_MAX))
-                .wisdom(rawCharacter.getWisdom())
-                .dexterity(rawCharacter.getDexterity())
-                .constitution(rawCharacter.getConstitution())
-                .charisma(Math.min(rawCharacter.getCharisma() + 2, Constants.HALF_ELF_MAX))
+                .strength(rawCharacter.getStrength() + halfElfBonus.get(0))
+                .intelligence(Math.min(rawCharacter.getIntelligence() + 1 + halfElfBonus.get(1), Constants.HALF_ELF_MAX))
+                .wisdom(rawCharacter.getWisdom()+ halfElfBonus.get(2))
+                .dexterity(rawCharacter.getDexterity()+ halfElfBonus.get(3))
+                .constitution(rawCharacter.getConstitution()+ halfElfBonus.get(4))
+                .charisma(Math.min(rawCharacter.getCharisma() + 2 + halfElfBonus.get(5), Constants.HALF_ELF_MAX))
                 .race(rawCharacter.getRace())
-                .traits(List.of("Darkvision", "Fey Ancestry", "CHOOSE ONE SKILL", "CHOOSE ONE SKILL"))
+                .traits(Constants.HALF_ELF_TRAITS)
                 .languages(getLanguage(Constants.HALF_ELF_LANGUAGES))
                 .alignment(rawCharacter.getAlignment())
                 .build();

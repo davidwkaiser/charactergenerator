@@ -1,12 +1,11 @@
 package com.dnd.charactergenerator.utils;
 
 import java.util.List;
-
 import com.dnd.charactergenerator.models.Language;
 
 public class Constants {
+    public static final int ALL_MIN = 3;
     public static final int HUMAN_MAX = 18;
-    public static final int HUMAN_MIN = 3;
     public static final int ELVEN_MAX = 18;
     public static final int DWARVEN_MAX = 18;
     public static final int HALFLING_MAX = 18;
@@ -28,6 +27,7 @@ public class Constants {
     public static final List<String> HALFLING_TRAITS = List.of("Darkvision", "Fey Ancestry", "CHOOSE ONE SKILL");
     public static final List<Language> HALFLING_LANGUAGES = List.of(Language.values()[0], Language.values()[3]);
 
+    public static final List<String> HALF_ELF_TRAITS = List.of("Darkvision", "Fey Ancestry", "CHOOSE ONE SKILL", "CHOOSE ONE SKILL");     
     public static final List<Language> HALF_ELF_LANGUAGES = List.of(Language.values()[0], Language.values()[1]);
 
     public static final List<String> HALF_ORC_TRAITS = List.of("Darkvision", "Menacing", "Relentless Endurance",
