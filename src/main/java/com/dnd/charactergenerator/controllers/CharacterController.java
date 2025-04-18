@@ -1,24 +1,24 @@
-package com.dnd.charactergenerator.controllers;
+// package com.dnd.charactergenerator.controllers;
 
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.GetMapping;
-import java.lang.*;
-import com.dnd.charactergenerator.services.CharacterBuilder;
-import java.util.*;
-import com.dnd.charactergenerator.models.Character;
+// import org.springframework.web.bind.annotation.RestController;
+// import org.springframework.web.bind.annotation.GetMapping;
+// import java.lang.*;
+// import com.dnd.charactergenerator.services.CharacterBuilder;
+// import java.util.*;
+// import com.dnd.charactergenerator.models.Character;
 
-@RestController
-public class CharacterController {
+// @RestController
+// public class CharacterController {
 
-    CharacterBuilder characterBuilder;
+//     CharacterBuilder characterBuilder;
 
-    public CharacterController(final CharacterBuilder characterBuilder) {
-        this.characterBuilder = characterBuilder;
-    }
+//     public CharacterController(final CharacterBuilder characterBuilder) {
+//         this.characterBuilder = characterBuilder;
+//     }
 
-    @GetMapping("/")
-    public Character generateCharacter() {
+//     @GetMapping("/")
+//     public Character generateCharacter() {
 
-        return characterBuilder.generateCharacter();
-    }
-}
+//         return characterBuilder.generateCharacter();
+//     }
+// }
