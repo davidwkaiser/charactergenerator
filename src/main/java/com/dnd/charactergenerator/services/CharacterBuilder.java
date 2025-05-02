@@ -111,6 +111,20 @@ public class CharacterBuilder {
         return languageList;
     }
 
+    private List<String> getSkills(int number){
+        List<String> skills = new ArrayList<>();
+        int counter = 0; 
+        while (counter < number) {
+            int index = randomNumberGenerator.getIndex(Constants.ALL_SKILLS.size());
+            String newSkill = Constants.ALL_SKILLS.get(index);
+            if(!skills.contains(newSkill)){
+                skills.add(newSkill);
+                counter++; 
+            }             
+        }
+        return skills;
+    }
+
     Character modifyCharacter(Character rawCharacter) {
         Race race = rawCharacter.getRace(); 
         Function<Character, Character> method = builderMap.get(race); 
@@ -168,6 +182,11 @@ public class CharacterBuilder {
     }
 
     Character buildHalflingCharacter(Character rawCharacter) {
+
+        List<String> traits = new ArrayList<>(Constants.HALFLING_TRAITS);
+        List<String> skills = getSkills(1);
+        traits.addAll(skills); 
+
         return Character.builder()
                 .strength(rawCharacter.getStrength())
                 .intelligence(rawCharacter.getIntelligence())
@@ -176,7 +195,7 @@ public class CharacterBuilder {
                 .constitution(rawCharacter.getConstitution())
                 .charisma(rawCharacter.getCharisma())
                 .race(rawCharacter.getRace())
-                .traits(Constants.HALFLING_TRAITS)
+                .traits(traits)
                 .languages(Constants.HALFLING_LANGUAGES)
                 .alignment(rawCharacter.getAlignment())
                 .build();
@@ -188,6 +207,10 @@ public class CharacterBuilder {
         int seed = randomNumberGenerator.rollDie(1000);
         Collections.shuffle(halfElfBonus, new Random(seed));
 
+        List<String> traits = new ArrayList<>(Constants.HALF_ELF_TRAITS);
+        List<String> skills = getSkills(2);
+        traits.addAll(skills); 
+
         return Character.builder()
                 .strength(rawCharacter.getStrength() + halfElfBonus.get(0))
                 .intelligence(Math.min(rawCharacter.getIntelligence() + 1 + halfElfBonus.get(1), Constants.HALF_ELF_MAX))
@@ -196,7 +219,7 @@ public class CharacterBuilder {
                 .constitution(rawCharacter.getConstitution()+ halfElfBonus.get(4))
                 .charisma(Math.min(rawCharacter.getCharisma() + 2 + halfElfBonus.get(5), Constants.HALF_ELF_MAX))
                 .race(rawCharacter.getRace())
-                .traits(Constants.HALF_ELF_TRAITS)
+                .traits(traits)
                 .languages(getLanguage(Constants.HALF_ELF_LANGUAGES))
                 .alignment(rawCharacter.getAlignment())
                 .build();

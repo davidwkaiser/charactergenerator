@@ -24,10 +24,10 @@ public class Constants {
             "Dwarven Combat Training", "Stonecunning");
     public static final List<Language> DWARVEN_LANGUAGES = List.of(Language.values()[0], Language.values()[2]);
 
-    public static final List<String> HALFLING_TRAITS = List.of("Darkvision", "Fey Ancestry", "CHOOSE ONE SKILL");
+    public static final List<String> HALFLING_TRAITS = List.of("Darkvision", "Fey Ancestry");
     public static final List<Language> HALFLING_LANGUAGES = List.of(Language.values()[0], Language.values()[3]);
 
-    public static final List<String> HALF_ELF_TRAITS = List.of("Darkvision", "Fey Ancestry", "CHOOSE ONE SKILL", "CHOOSE ONE SKILL");     
+    public static final List<String> HALF_ELF_TRAITS = List.of("Darkvision", "Fey Ancestry");     
     public static final List<Language> HALF_ELF_LANGUAGES = List.of(Language.values()[0], Language.values()[1]);
 
     public static final List<String> HALF_ORC_TRAITS = List.of("Darkvision", "Menacing", "Relentless Endurance",
@@ -44,4 +44,24 @@ public class Constants {
     public static final List<String> TIEFLING_TRAITS = List.of("Darkvision", "Infernal Legacy", "Hellish Resistence");
     public static final List<Language> TIEFLING_LANGUAGES = List.of(Language.values()[0], Language.values()[7]); 
 
+    public static final List<String> ALL_SKILLS = List.of(
+        "Athletics",
+        "Acrobatics",
+        "Sleight of Hand",
+        "Stealth",
+        "Arcana",
+        "History",
+        "Investigation",
+        "Nature",
+        "Religion",
+        "Animal Handling",
+        "Insight",
+        "Medicine",
+        "Perception",
+        "Survival",
+        "Deception",
+        "Intimidation",
+        "Performance",
+        "Persuasion"
+        );
 }
