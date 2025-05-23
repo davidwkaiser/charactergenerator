@@ -14,6 +14,15 @@ public class Constants {
     public static final int GNOMISH_MAX = 18;
     public static final int DRAGON_BORN_MAX = 18;
     public static final int TIEFLING_MAX = 18;
+    public static final int HUMAN_SPEED = 30;     
+    public static final int DWARVEN_SPEED = 25; 
+    public static final int ELVEN_SPEED = 30; 
+    public static final int HALFLING_SPEED = 25; 
+    public static final int DARGON_BORN_SPEED = 30; 
+    public static final int GNOMISH_SPEED = 25; 
+    public static final int HALF_ELF_SPEED = 30; 
+    public static final int HALF_ORC_SPEED = 30; 
+    public static final int TIEFLING_SPEED = 30; 
 
     public static final List<Language> HUMAN_LANGUAGES = List.of(Language.values()[0]); 
 

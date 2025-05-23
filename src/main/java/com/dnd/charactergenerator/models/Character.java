@@ -20,4 +20,6 @@ public class Character {
     List<String> traits;
     List<Language> languages;
     Alignment alignment;
+    Size size; 
+    int speed; 
 }

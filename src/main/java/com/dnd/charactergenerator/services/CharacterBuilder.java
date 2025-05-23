@@ -8,6 +8,7 @@ import com.dnd.charactergenerator.models.Language;
 import com.dnd.charactergenerator.models.Character;
 import com.dnd.charactergenerator.models.Race;
 import com.dnd.charactergenerator.models.Alignment;
+import com.dnd.charactergenerator.models.Size;
 import java.util.*;
 import java.util.function.Function;
 
@@ -148,6 +149,8 @@ public class CharacterBuilder {
                 .traits(Collections.emptyList())
                 .languages(getLanguage(Constants.HUMAN_LANGUAGES))
                 .alignment(rawCharacter.getAlignment())
+                .size(Size.MEDIUM)
+                .speed(Constants.HUMAN_SPEED)
                 .build();
     }
 
@@ -163,6 +166,8 @@ public class CharacterBuilder {
                 .traits(Constants.ELVEN_TRAITS)
                 .languages(Constants.ELVEN_LANGUAGES)
                 .alignment(rawCharacter.getAlignment())
+                .size(Size.MEDIUM)
+                .speed(Constants.ELVEN_SPEED)
                 .build();
     }
 
@@ -178,6 +183,8 @@ public class CharacterBuilder {
                 .traits(Constants.DWARVEN_TRAITS)
                 .languages(Constants.DWARVEN_LANGUAGES)
                 .alignment(rawCharacter.getAlignment())
+                .size(Size.MEDIUM)
+                .speed(Constants.DWARVEN_SPEED)
                 .build();
     }
 
@@ -198,6 +205,8 @@ public class CharacterBuilder {
                 .traits(traits)
                 .languages(Constants.HALFLING_LANGUAGES)
                 .alignment(rawCharacter.getAlignment())
+                .size(Size.SMALL)
+                .speed(Constants.HALFLING_SPEED)
                 .build();
     }
 
@@ -222,6 +231,8 @@ public class CharacterBuilder {
                 .traits(traits)
                 .languages(getLanguage(Constants.HALF_ELF_LANGUAGES))
                 .alignment(rawCharacter.getAlignment())
+                .size(Size.MEDIUM)
+                .speed(Constants.HALF_ELF_SPEED)
                 .build();
     }
 
@@ -237,6 +248,8 @@ public class CharacterBuilder {
                 .traits(Constants.HALF_ORC_TRAITS)
                 .languages(Constants.HALF_ORC_LANGUAGES)
                 .alignment(rawCharacter.getAlignment())
+                .size(Size.MEDIUM)
+                .speed(Constants.HALF_ORC_SPEED)
                 .build();
     }
 
@@ -252,6 +265,8 @@ public class CharacterBuilder {
         .traits(Constants.GNOMISH_TRAITS)
         .languages(Constants.GNOMISH_LANGUAGES)
         .alignment(rawCharacter.getAlignment())
+        .size(Size.SMALL)
+        .speed(Constants.GNOMISH_SPEED)
         .build();
     }
 
@@ -267,6 +282,8 @@ public class CharacterBuilder {
         .traits(Constants.DRAGON_BORN_TRAITS)
         .languages(Constants.DRAGON_BORN_LANGUAGES)
         .alignment(rawCharacter.getAlignment())
+        .size(Size.MEDIUM)
+        .speed(Constants.DARGON_BORN_SPEED)
         .build();
     }
 
@@ -282,7 +299,8 @@ public class CharacterBuilder {
         .traits(Constants.TIEFLING_TRAITS)
         .languages(Constants.TIEFLING_LANGUAGES)
         .alignment(rawCharacter.getAlignment())
+        .size(Size.MEDIUM)
+        .speed(Constants.HALF_ORC_SPEED)
         .build();
-
     }
 }

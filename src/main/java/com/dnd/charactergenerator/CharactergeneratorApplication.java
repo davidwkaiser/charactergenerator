@@ -9,5 +9,4 @@ public class CharactergeneratorApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CharactergeneratorApplication.class, args);
 	}
-
 }

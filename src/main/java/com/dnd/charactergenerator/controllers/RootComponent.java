@@ -30,6 +30,8 @@ public class RootComponent extends VerticalLayout {
         this.add(new Paragraph("Alignment: "+character.getAlignment()));
         this.add(new Paragraph("Languages: "+prettifyLanguages(character.getLanguages())));
         this.add(new Paragraph("Traits: "+character.getTraits()));
+        this.add(new Paragraph("Size: "+character.getSize()));
+        this.add(new Paragraph("Speed: "+character.getSpeed()));
     }
 
     private String prettifyLanguages(List<Language> languages){
