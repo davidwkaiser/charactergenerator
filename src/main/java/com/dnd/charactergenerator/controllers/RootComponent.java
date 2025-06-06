@@ -14,29 +14,43 @@ import com.dnd.charactergenerator.models.Language;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 
+// import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.dependency.StyleSheet;
+
 @Route("")
+@StyleSheet("dk-styles.css")
 public class RootComponent extends VerticalLayout {
 
     public RootComponent(@Autowired CharacterBuilder characterBuilder){
         Character character = characterBuilder.generateCharacter();
-        this.add(new H2("Your newly generated character:"));
-        this.add(new Paragraph("Race: "+character.getRace()));
-        this.add(new Paragraph("Strength: "+character.getStrength()));
-        this.add(new Paragraph("Intelligence: "+character.getIntelligence()));
-        this.add(new Paragraph("Wisdom: "+character.getWisdom()));
-        this.add(new Paragraph("Constitution: "+character.getConstitution()));
-        this.add(new Paragraph("Charisma: "+character.getCharisma()));
-        this.add(new Paragraph("Constitution: "+character.getConstitution()));
-        this.add(new Paragraph("Alignment: "+character.getAlignment()));
-        this.add(new Paragraph("Languages: "+prettifyLanguages(character.getLanguages())));
-        this.add(new Paragraph("Traits: "+character.getTraits()));
-        this.add(new Paragraph("Size: "+character.getSize()));
-        this.add(new Paragraph("Speed: "+character.getSpeed()));
+
+        this.add(new H3("Your newly generated character:"));
+        Div div = new Div(); 
+        div.add(new Span("Attributes")); 
+        UnorderedList ul = new UnorderedList();
+        ul.add(new ListItem("Strength: "+character.getStrength()));
+        ul.add(new ListItem("Intelligence: "+character.getIntelligence()));
+        ul.add(new ListItem("Wisdom: "+character.getWisdom()));
+        ul.add(new ListItem("Constitution: "+character.getConstitution()));
+        ul.add(new ListItem("Charisma: "+character.getCharisma()));
+        ul.add(new ListItem("Constitution: "+character.getConstitution()));
+
+        ul.addClassName("pickleJuice"); 
+
+        div.add(ul);
+
+        this.add(div); 
+        this.add(new Span("Race: "+character.getRace()));
+        this.add(new Span("Alignment: "+character.getAlignment()));
+        this.add(new Span("Languages: "+prettifyList(character.getLanguages())));
+        this.add(new Span("Traits: "+prettifyList(character.getTraits())));
+        this.add(new Span("Size: "+character.getSize()));
+        this.add(new Span("Speed: "+character.getSpeed()));
     }
 
-    private String prettifyLanguages(List<Language> languages){
+    private String prettifyList(List<?> list){
 
-        Optional<String> combinedString = languages
+        Optional<String> combinedString = list
             .stream()
             .map(x -> x.toString())
             .map(this::capitalize)
