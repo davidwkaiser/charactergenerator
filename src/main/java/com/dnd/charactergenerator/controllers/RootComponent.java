@@ -2,26 +2,31 @@ package com.dnd.charactergenerator.controllers;
 
 import com.vaadin.flow.router.Route;
 import com.dnd.charactergenerator.services.CharacterBuilder;
-import com.vaadin.flow.component.html.*;
+import com.dnd.charactergenerator.services.MailService;
 
-import java.util.Arrays;
+import com.vaadin.flow.component.html.*;
+import com.vaadin.flow.component.button.Button;
+
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.dnd.charactergenerator.models.Character;
-import com.dnd.charactergenerator.models.Language;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.formlayout.FormLayout;
 
-
-// import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.StyleSheet;
+import com.vaadin.flow.component.textfield.EmailField;
 
 @Route("")
 @StyleSheet("dk-styles.css")
 public class RootComponent extends VerticalLayout {
 
-    public RootComponent(@Autowired CharacterBuilder characterBuilder){
+    public RootComponent(
+            @Autowired CharacterBuilder characterBuilder,
+            @Autowired MailService mailService
+        ){
         Character character = characterBuilder.generateCharacter();
 
         this.add(new H3("Your newly generated character:"));
@@ -39,13 +44,32 @@ public class RootComponent extends VerticalLayout {
 
         div.add(ul);
 
-        this.add(div); 
-        this.add(new Span("Race: "+character.getRace()));
-        this.add(new Span("Alignment: "+character.getAlignment()));
-        this.add(new Span("Languages: "+prettifyList(character.getLanguages())));
-        this.add(new Span("Traits: "+prettifyList(character.getTraits())));
-        this.add(new Span("Size: "+character.getSize()));
-        this.add(new Span("Speed: "+character.getSpeed()));
+        VerticalLayout vl = new VerticalLayout();    
+        
+        vl.add(div); 
+
+        vl.add(new Paragraph("Race: "+character.getRace() + "\n"));
+        vl.add(new Paragraph("Alignment: "+character.getAlignment() + "\n"));
+        vl.add(new Paragraph("Languages: "+prettifyList(character.getLanguages()) + "\n"));
+        vl.add(new Paragraph("Traits: "+prettifyList(character.getTraits()) + "\n"));
+        vl.add(new Paragraph("Size: "+character.getSize() + "\n"));
+        vl.add(new Paragraph("Speed: "+character.getSpeed()+ "\n"));
+
+        this.add(vl); 
+     
+        FormLayout formLayout = new FormLayout();
+
+        EmailField emailField = new EmailField();
+        emailField.setLabel("Email address");
+
+        Button button = new Button("Email me!",
+        event -> {
+            event.getSource().setText("Clicked!!!");
+            String emailAddress = emailField.getValue(); 
+            mailService.dispatchEmail(emailAddress, vl); 
+        });
+        formLayout.add(emailField, button);
+        this.add(formLayout); 
     }
 
     private String prettifyList(List<?> list){
