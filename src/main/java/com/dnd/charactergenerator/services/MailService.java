@@ -40,16 +40,16 @@ public void dispatchEmail(
     // SendGrid sg = new SendGrid(System.getenv("SENDGRID_API_KEY"));
     SendGrid sg = new SendGrid("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");
     Request request = new Request();
-    try {
-      request.setMethod(Method.POST);
-      request.setEndpoint(EMAIL_ENDPOINT);
-      request.setBody(mail.build());
-      Response response = sg.api(request);
-      System.out.println(response.getStatusCode());
-      System.out.println(response.getBody());
-      System.out.println(response.getHeaders());
-    } catch (IOException ex) {
-      System.out.println(ex); 
-    }
+      try {
+        request.setMethod(Method.POST);
+        request.setEndpoint(EMAIL_ENDPOINT);
+        request.setBody(mail.build());
+        Response response = sg.api(request);
+        System.out.println(response.getStatusCode());
+        System.out.println(response.getBody());
+        System.out.println(response.getHeaders());
+      } catch (IOException ex) {
+        System.out.println(ex); 
+      }
     }
 }

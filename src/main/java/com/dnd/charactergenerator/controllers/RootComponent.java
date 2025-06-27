@@ -5,16 +5,17 @@ import com.dnd.charactergenerator.services.CharacterBuilder;
 import com.dnd.charactergenerator.services.MailService;
 
 import com.vaadin.flow.component.html.*;
-import com.vaadin.flow.component.button.Button;
 
 import java.util.List;
 import java.util.Optional;
+
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.dnd.charactergenerator.models.Character;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.formlayout.FormLayout;
 
 import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.textfield.EmailField;
@@ -57,19 +58,19 @@ public class RootComponent extends VerticalLayout {
 
         this.add(vl); 
      
-        FormLayout formLayout = new FormLayout();
-
         EmailField emailField = new EmailField();
         emailField.setLabel("Email address");
+        emailField.focus(); 
 
-        Button button = new Button("Email me!",
-        event -> {
-            event.getSource().setText("Clicked!!!");
-            String emailAddress = emailField.getValue(); 
-            mailService.dispatchEmail(emailAddress, vl); 
+        emailField.addKeyDownListener(com.vaadin.flow.component.Key.ENTER, event -> {
+                String emailAddress = emailField.getValue(); 
+                mailService.dispatchEmail(emailAddress, vl); 
+                Notification notification = Notification.show("Sent!");
+                notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+                notification.setDuration(50);
+                emailField.clear();
         });
-        formLayout.add(emailField, button);
-        this.add(formLayout); 
+        this.add(emailField); 
     }
 
     private String prettifyList(List<?> list){
