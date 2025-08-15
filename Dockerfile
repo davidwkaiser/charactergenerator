@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 davidwkaiser/charactergenerator
+FROM --platform=arm64 davidwkaiser/charactergenerator
 # RUN ./gradlew clean build -Pvaadin.productionMode
 #RUN ls -al /build/libs
 # RUN addgroup -S spring && adduser -S spring -G spring
