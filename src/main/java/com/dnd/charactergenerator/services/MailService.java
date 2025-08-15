@@ -1,24 +1,22 @@
 package com.dnd.charactergenerator.services;
 
-import java.io.IOException;
-
 import org.springframework.stereotype.Service;
 
-import com.sendgrid.Method;
-import com.sendgrid.Request;
-import com.sendgrid.Response;
-import com.sendgrid.SendGrid;
-import com.sendgrid.helpers.mail.Mail;
-import com.sendgrid.helpers.mail.objects.Content; 
-import com.sendgrid.helpers.mail.objects.Email;
+import com.mailgun.api.v3.MailgunMessagesApi;
+import com.mailgun.client.MailgunClient;
+import com.mailgun.model.message.Message;
+import com.mailgun.model.message.MessageResponse;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 @Service
 public class MailService {
 
-    private static final String EMAIL_ENDPOINT = "mail/send";
+    String apiKey; 
+    String railgunSandboxDomain; 
 
     public MailService(){
+        this.apiKey = System.getenv("MAILGUN_TOKEN");
+        this.railgunSandboxDomain = System.getenv("MAILGUN_DOMAIN"); 
     }
 
     public void sendMail(){
@@ -29,27 +27,20 @@ public void dispatchEmail(
     String emailAddress,
     VerticalLayout html
     ) {
-    Email from = new Email("davidwkaiser@gmail.com");
-    String subject = "Test for the DnD site";
-    Email to = new Email(emailAddress);
 
-    Content content = new Content("text/html", html.getElement().getOuterHTML());
-  
-    Mail mail = new Mail(from, subject, to, content);
+        MailgunMessagesApi mailgunMessagesApi = MailgunClient // RIGHT HERE
+            .config(apiKey)
+            .createApi(MailgunMessagesApi.class);
 
-    // SendGrid sg = new SendGrid(System.getenv("SENDGRID_API_KEY"));
-    SendGrid sg = new SendGrid("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");
-    Request request = new Request();
-      try {
-        request.setMethod(Method.POST);
-        request.setEndpoint(EMAIL_ENDPOINT);
-        request.setBody(mail.build());
-        Response response = sg.api(request);
-        System.out.println(response.getStatusCode());
-        System.out.println(response.getBody());
-        System.out.println(response.getHeaders());
-      } catch (IOException ex) {
-        System.out.println(ex); 
-      }
+        Message message = Message.builder()
+            .from("davidwkaiser@gmail.com")
+            .to(emailAddress)
+            .subject("Your DnD Character")
+            .html(html.getElement().getOuterHTML())
+            .build();
+
+        MessageResponse messageResponse = mailgunMessagesApi.sendMessage(railgunSandboxDomain, message);
+
+        System.out.println(messageResponse); 
     }
 }

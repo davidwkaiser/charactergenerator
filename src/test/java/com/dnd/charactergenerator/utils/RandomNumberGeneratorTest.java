@@ -20,7 +20,8 @@ class RandomNumberGeneratorTest {
     @Test
     void getIndexWorks() {
         for (int i = 0; i < 10; i++){
-            int actual = subject.rollDie(10);
+            int actual = subject.getIndex(10);
+            System.out.println("******");
             System.out.println(actual);
             assertTrue( actual >= 0 && actual <= 9);
         }
