@@ -1,4 +1,4 @@
-FROM davidwkaiser/charactergenerator:v1
+FROM davidwkaiser/charactergenerator
 #RUN ./gradlew clean build -Pvaadin.productionMode
 #RUN ls -al /build/libs
 # RUN addgroup -S spring && adduser -S spring -G spring
