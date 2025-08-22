@@ -29,6 +29,7 @@ vaadin {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'com.vaadin:vaadin-spring-boot-starter'
 	// implementation 'com.sendgrid:sendgrid-java'
 	// implementation 'com.mailersend:java-sdk:1.4.1'
