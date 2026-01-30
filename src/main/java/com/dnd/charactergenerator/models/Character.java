@@ -1,9 +1,9 @@
 package com.dnd.charactergenerator.models;
 
-import lombok.Data;
-import com.dnd.charactergenerator.models.Language;
+import java.util.List;
+
 import lombok.Builder;
-import java.util.*;
+import lombok.Data;
 
 
 @Data

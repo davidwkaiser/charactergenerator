@@ -1,34 +1,35 @@
 package com.dnd.charactergenerator.controllers;
 
-import com.vaadin.flow.router.Route;
-import com.dnd.charactergenerator.services.CharacterBuilder;
-import com.dnd.charactergenerator.services.MailService;
-
-import com.vaadin.flow.component.html.*;
-
 import java.util.List;
 import java.util.Optional;
-
-import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.notification.NotificationVariant;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.dnd.charactergenerator.models.Character;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-
+import com.dnd.charactergenerator.services.CharacterBuilder;
+import com.dnd.charactergenerator.services.MailService;
 import com.vaadin.flow.component.dependency.StyleSheet;
+import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.H3;
+import com.vaadin.flow.component.html.ListItem;
+import com.vaadin.flow.component.html.Paragraph;
+import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.html.UnorderedList;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.EmailField;
+import com.vaadin.flow.router.Route;
 
 @Route("")
 @StyleSheet("dk-styles.css")
 public class RootComponent extends VerticalLayout {
 
     public RootComponent(
-            @Autowired CharacterBuilder characterBuilder,
-            @Autowired MailService mailService
+            @Autowired final CharacterBuilder characterBuilder,
+            @Autowired final MailService mailService
         ){
-        Character character = characterBuilder.generateCharacter();
+        final Character character = characterBuilder.generateCharacter();
 
         this.add(new H3("Your newly generated character:"));
         Div div = new Div(); 
